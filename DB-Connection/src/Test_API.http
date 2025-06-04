@@ -1,0 +1,33 @@
+@user = http://localhost:8080/identity
+
+### API 1 - Test API create USER
+POST {{user}}/users
+Content-Type: application/json
+
+{
+  "username": "bangbui02",
+  "password": "12345678",
+  "firstName": "Bang02",
+  "lastName": "Bui02",
+  "dob": "2004-10-10"
+}
+
+### API 2 - Test API get all user in the database
+GET {{user}}/users
+
+### API 3 - Find User by ID
+GET {{user}}/users/2
+
+### API 3 - Update User Information
+PUT {{user}}/users/3
+Content-Type: application/json
+
+{
+    "password": "1234",
+    "firstName": "Bang03",
+    "lastName": "Bui03",
+    "dob": "2004-10-10"
+}
+
+### API 4 - DELETE User By ID
+DELETE {{user}}/users/2
