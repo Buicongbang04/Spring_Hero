@@ -5,10 +5,10 @@ POST {{user}}/users
 Content-Type: application/json
 
 {
-  "username": "bangbui02",
+  "username": "bangbui1",
   "password": "12345678",
-  "firstName": "Bang02",
-  "lastName": "Bui02",
+  "firstName": "Bang1",
+  "lastName": "Bui1",
   "dob": "2004-10-10"
 }
 

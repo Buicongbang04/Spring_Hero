@@ -1,5 +1,6 @@
 package com.example.DB_Connection.controller;
 
+import com.example.DB_Connection.dto.request.APIResponse;
 import com.example.DB_Connection.dto.request.UserCreationRequest;
 import com.example.DB_Connection.dto.request.UserUpdateRequest;
 import com.example.DB_Connection.entity.User;
@@ -20,8 +21,12 @@ public class UserController {
 
     // API tạo user
     @PostMapping
-    User createUser(@RequestBody @Valid UserCreationRequest request){
-        return userService.createUser(request);
+    APIResponse<User> createUser(@RequestBody @Valid UserCreationRequest request){
+        APIResponse<User> response = new APIResponse<>();
+
+        response.setResult(userService.createUser(request));
+
+        return response;
     }
 
     // API Get All user

@@ -1,5 +1,6 @@
 package com.example.DB_Connection.exception;
 
+import com.example.DB_Connection.dto.request.APIResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,9 +11,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = RuntimeException.class)
-    ResponseEntity<String> handlingRuntimeException(RuntimeException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                             .body(e.getMessage());
+    ResponseEntity<APIResponse> handlingRuntimeException(RuntimeException e) {
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setMessage(e.getMessage());
+        apiResponse.setCode(HttpStatus.BAD_REQUEST.value());
+
+        return ResponseEntity.badRequest().body(apiResponse);
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
