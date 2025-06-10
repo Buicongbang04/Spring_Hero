@@ -3,6 +3,7 @@ package com.example.DB_Connection.controller;
 import com.example.DB_Connection.dto.request.APIResponse;
 import com.example.DB_Connection.dto.request.UserCreationRequest;
 import com.example.DB_Connection.dto.request.UserUpdateRequest;
+import com.example.DB_Connection.dto.response.UserResponse;
 import com.example.DB_Connection.entity.User;
 import com.example.DB_Connection.service.UserService;
 import jakarta.validation.Valid;
@@ -37,13 +38,13 @@ public class UserController {
 
     // API for Get User by ID
     @GetMapping("/{userId}")
-    User getUserByID(@PathVariable String userId) {
+    UserResponse getUserByID(@PathVariable String userId) {
         return userService.getUserById(userId);
     }
 
     // API Update User's Information
     @PutMapping("/{userId}")
-    User updateInfo(@RequestBody @Valid UserUpdateRequest request, @PathVariable String userId) {
+    UserResponse updateInfo(@RequestBody @Valid UserUpdateRequest request, @PathVariable String userId) {
         return userService.updateUser(request, userId);
     }
 
