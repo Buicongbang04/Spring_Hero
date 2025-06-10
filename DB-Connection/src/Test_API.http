@@ -5,10 +5,10 @@ POST {{user}}/users
 Content-Type: application/json
 
 {
-  "username": "bang",
+  "username": "bang3",
   "password": "12345678",
-  "firstName": "Bang1",
-  "lastName": "Bui1",
+  "firstName": "Bang3",
+  "lastName": "Bui3",
   "dob": "2004-10-10"
 }
 
@@ -19,14 +19,14 @@ GET {{user}}/users
 GET {{user}}/users/2
 
 ### API 3 - Update User Information
-PUT {{user}}/users/3
+PUT {{user}}/users/2
 Content-Type: application/json
 
 {
-    "password": "1234",
-    "firstName": "Bang03",
-    "lastName": "Bui03",
-    "dob": "2004-10-10"
+  "password": "12345678",
+  "firstName": "Bang2",
+  "lastName": "Bui2",
+  "dob": "2004-10-10"
 }
 
 ### API 4 - DELETE User By ID

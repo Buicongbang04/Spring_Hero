@@ -5,6 +5,7 @@ import com.example.DB_Connection.dto.request.UserUpdateRequest;
 import com.example.DB_Connection.entity.User;
 import com.example.DB_Connection.exception.AppException;
 import com.example.DB_Connection.exception.ErrorCode;
+import com.example.DB_Connection.mapper.UserMapper;
 import com.example.DB_Connection.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,43 +17,38 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(UserCreationRequest request) {
-        User user = new User();
+    @Autowired
+    private UserMapper userMapper;
 
-        if(userRepository.existsUsersByUsername(request.getUsername())) {
+
+    public User createUser(UserCreationRequest request) {
+        if (userRepository.existsUsersByUsername(request.getUsername())) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
 
-        user.setUsername(request.getUsername());
-        user.setPassword(request.getPassword());
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setDob(request.getDob());
+        User user = userMapper.toUser(request);
 
         return userRepository.save(user);
     }
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return userRepository.findAll();
     }
 
-    public User getUserById(String id){
+    public User getUserById(String id) {
         return userRepository.findById(id)
-                             .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public User updateUser(UserUpdateRequest request, String userId){
+    public User updateUser(UserUpdateRequest request, String userId) {
         User user = getUserById(userId);
 
-        user.setPassword(request.getPassword());
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setDob(request.getDob());
+        userMapper.updateUser(user, request);
 
         return userRepository.save(user);
     }
 
-    public void deleteUser(String userId){
+    public void deleteUser(String userId) {
         userRepository.deleteById(userId);
     }
 

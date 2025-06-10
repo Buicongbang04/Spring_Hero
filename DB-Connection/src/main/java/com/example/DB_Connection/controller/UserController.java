@@ -21,7 +21,7 @@ public class UserController {
 
     // API tạo user
     @PostMapping
-    APIResponse<User> createUser(@RequestBody @Valid UserCreationRequest request){
+    APIResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
         APIResponse<User> response = new APIResponse<>();
 
         response.setResult(userService.createUser(request));
@@ -31,25 +31,25 @@ public class UserController {
 
     // API Get All user
     @GetMapping
-    List<User> getUsers(){
+    List<User> getUsers() {
         return userService.getUsers();
     }
 
     // API for Get User by ID
     @GetMapping("/{userId}")
-    User getUserByID(@PathVariable String userId){
+    User getUserByID(@PathVariable String userId) {
         return userService.getUserById(userId);
     }
 
     // API Update User's Information
     @PutMapping("/{userId}")
-    User updateInfo(@RequestBody UserUpdateRequest request, @PathVariable String userId){
+    User updateInfo(@RequestBody @Valid UserUpdateRequest request, @PathVariable String userId) {
         return userService.updateUser(request, userId);
     }
 
     // API Delete User By ID
     @DeleteMapping("/{userId}")
-    String deleteUser(@PathVariable String userId){
+    String deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
         return "User deleted successfully!";
     }
