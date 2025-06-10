@@ -1,14 +1,17 @@
 package com.example.DB_Connection.dto.request;
 
+import com.example.DB_Connection.exception.ErrorCode;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class UserCreationRequest {
+    @Size(min = 3,
+    message = "USERNAME_INVALID")
     private String username;
 
     @Size(min=8,
-            message = "Password must be equal or greater than 8 characters !!!")
+            message = "PASSWORD_INVALID")
     private String password;
     private String firstName;
     private String lastName;

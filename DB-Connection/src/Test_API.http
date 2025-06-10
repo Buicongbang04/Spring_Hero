@@ -5,7 +5,7 @@ POST {{user}}/users
 Content-Type: application/json
 
 {
-  "username": "bangbui1",
+  "username": "bang",
   "password": "12345678",
   "firstName": "Bang1",
   "lastName": "Bui1",

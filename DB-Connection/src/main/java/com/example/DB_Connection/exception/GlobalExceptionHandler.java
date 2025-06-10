@@ -10,18 +10,39 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = RuntimeException.class)
-    ResponseEntity<APIResponse> handlingRuntimeException(RuntimeException e) {
+    @ExceptionHandler(value = Exception.class)
+    ResponseEntity<APIResponse> handlingException(Exception e) {
         APIResponse apiResponse = new APIResponse();
-        apiResponse.setMessage(e.getMessage());
-        apiResponse.setCode(HttpStatus.BAD_REQUEST.value());
+        apiResponse.setMessage(ErrorCode.UNCATEGORIZED_EXCEPTION.getMessage());
+        apiResponse.setCode(ErrorCode.UNCATEGORIZED_EXCEPTION.getCode());
+
+        return ResponseEntity.badRequest().body(apiResponse);
+    }
+
+    @ExceptionHandler(value = AppException.class)
+    ResponseEntity<APIResponse> handlingAppException(AppException e) {
+        ErrorCode errorCode = e.getErrorCode();
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setMessage(errorCode.getMessage());
+        apiResponse.setCode(errorCode.getCode());
 
         return ResponseEntity.badRequest().body(apiResponse);
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    ResponseEntity<String> handlingMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                             .body(e.getFieldError().getDefaultMessage());
+    ResponseEntity<APIResponse> handlingMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        String enumKey = e.getFieldError().getDefaultMessage();
+        ErrorCode errorCode = ErrorCode.INVALID_KEY;
+
+        try {
+            errorCode = ErrorCode.valueOf(enumKey);
+        } catch (IllegalArgumentException ex) {
+
+        }
+
+        APIResponse apiResponse = new APIResponse();
+        apiResponse.setMessage(errorCode.getMessage());
+        apiResponse.setCode(errorCode.getCode());
+        return ResponseEntity.badRequest().body(apiResponse);
     }
 }

@@ -3,6 +3,8 @@ package com.example.DB_Connection.service;
 import com.example.DB_Connection.dto.request.UserCreationRequest;
 import com.example.DB_Connection.dto.request.UserUpdateRequest;
 import com.example.DB_Connection.entity.User;
+import com.example.DB_Connection.exception.AppException;
+import com.example.DB_Connection.exception.ErrorCode;
 import com.example.DB_Connection.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,7 @@ public class UserService {
         User user = new User();
 
         if(userRepository.existsUsersByUsername(request.getUsername())) {
-            throw new RuntimeException("Username already exists !");
+            throw new AppException(ErrorCode.USER_EXISTED);
         }
 
         user.setUsername(request.getUsername());
