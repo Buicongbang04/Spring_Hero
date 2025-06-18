@@ -14,7 +14,7 @@ public class UserResponse {
     String id;
     String username;
     String password;
-    String firstname;
-    String lastname;
+    String firstName;
+    String lastName;
     LocalDate dob;
 }
