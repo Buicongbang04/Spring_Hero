@@ -16,7 +16,7 @@ Content-Type: application/json
 GET {{user}}/users
 
 ### API 3 - Find User by ID
-GET {{user}}/users/1
+GET {{user}}/users/2
 
 ### API 3 - Update User Information
 PUT {{user}}/users/2
