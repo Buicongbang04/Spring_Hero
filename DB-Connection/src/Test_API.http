@@ -5,7 +5,7 @@ POST {{user}}/users
 Content-Type: application/json
 
 {
-  "username": "bang3",
+  "username": "bang5",
   "password": "12345678",
   "firstName": "Bang3",
   "lastName": "Bui3",
@@ -16,7 +16,7 @@ Content-Type: application/json
 GET {{user}}/users
 
 ### API 3 - Find User by ID
-GET {{user}}/users/2
+GET {{user}}/users/8
 
 ### API 3 - Update User Information
 PUT {{user}}/users/2
@@ -31,3 +31,12 @@ Content-Type: application/json
 
 ### API 4 - DELETE User By ID
 DELETE {{user}}/users/2
+
+### API 5 - Authenticate user
+POST {{user}}/auth/log-in
+Content-Type: application/json
+
+{
+  "username": "bang5",
+  "password": "12345677"
+}
