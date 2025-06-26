@@ -42,6 +42,10 @@ public class AuthenticationService {
         }
 
         var token = generateToken(request.getUsername());
+        return AuthenticationResponse.builder()
+                .token(token)
+                .authenticated(true)
+                .build();
     }
 
     String generateToken(String username) {
