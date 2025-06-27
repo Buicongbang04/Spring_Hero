@@ -5,7 +5,7 @@ POST {{user}}/users
 Content-Type: application/json
 
 {
-  "username": "bang4",
+  "username": "bang",
   "password": "12345678",
   "firstName": "Bang3",
   "lastName": "Bui3",
@@ -37,8 +37,8 @@ POST {{user}}/auth/log-in
 Content-Type: application/json
 
 {
-  "username": "bang1",
-  "password": "12345678"
+  "username": "admin",
+  "password": "admin"
 }
 
 ### API 6 - Verified token
@@ -51,4 +51,4 @@ Content-Type: application/json
 
 ### API 7 - Get user with token
 GET {{user}}/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJiYW5nYnVpLmNvbSIsInN1YiI6ImJhbmcxIiwiZXhwIjoxNzUwOTUwMTYwLCJjdXN0b21DbGFpbSI6ImN1c3RvbUNsYWltVmFsdWUiLCJpYXQiOjE3NTA5NDY1NjB9.SprngSg0L2I7gaf1XCQ-svKNTc3eBtnBFLCnDbE2Ka1DBjI8zmSjugfIWJKN4lbHaN0oqXsuNw8maXqvlfpvuw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJiYW5nYnVpLmNvbSIsInN1YiI6ImFkbWluIiwiZXhwIjoxNzUxMDA0MjEwLCJjdXN0b21DbGFpbSI6ImN1c3RvbUNsYWltVmFsdWUiLCJpYXQiOjE3NTEwMDA2MTB9.q9V-yry9NpVEJetZdZA4X54QwoMdNnKmOL093qjlfweNkHdrI7NeXx_Q1gbDF3qH3hz76tjXaXlicwK7g9_I9A
